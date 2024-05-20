@@ -15,11 +15,11 @@ warnings.filterwarnings("ignore")
 
 # In[4]:
 #testing
-df1_config=pd.read_excel(r"excel_to_python.xlsx", sheet_name='config_data')
-df2_proc_data=pd.read_excel(r"excel_to_python.xlsx", sheet_name='Data')
-df_tag_list=pd.read_excel(r"excel_to_python.xlsx", sheet_name='tag_description')
-df_final_cols=pd.read_excel(r"excel_to_python.xlsx", sheet_name='final_col_list')
-df_coeff_summary=pd.read_excel(r"C:\Users\Naina Sisodia\Desktop\streamlit_dashboards\Compressor Requirements\CoeffsLinearReg (1).xlsx")
+df1_config=pd.read_excel("excel_to_python.xlsx", sheet_name='config_data')
+df2_proc_data=pd.read_excel("excel_to_python.xlsx", sheet_name='Data')
+df_tag_list=pd.read_excel("excel_to_python.xlsx", sheet_name='tag_description')
+df_final_cols=pd.read_excel("excel_to_python.xlsx", sheet_name='final_col_list')
+df_coeff_summary=pd.read_excel("CoeffsLinearReg (1).xlsx")
 dict_stg = {'Stage 1': {'tab1': [7, 368, 'table1_df'], 'tab2': [372, 733, 'table2_df'], 'tab3': [745, 1106, 'table3_df'], 'tab4': [1110, 1471,'table4_df']},
             'Stage 2': {'tab1': [7, 368, 'table1_df'], 'tab2': [372, 733, 'table2_df'], 'tab3': [745, 1106, 'table3_df'], 'tab4': [1110, 1471,'table4_df']}
            }
@@ -139,16 +139,16 @@ col1, col2, col3 = st.columns([1, 4, 1])  # Adjust the ratios as needed
 
 # Place the left image in the first column
 with col1:
-    st.image(r"C:\Users\Naina Sisodia\Desktop\streamlit_dashboards\Compressor Requirements\DresserRandSiemensLogo.jpeg", width=200)
+    st.image("DresserRandSiemensLogo.jpeg", width=200)
 with col2:
     st.markdown("<h1 style='text-align: center;'>Compressor Health Monitoring</h1>", unsafe_allow_html=True)
 
 with col3:
-    st.image(r"C:\Users\Naina Sisodia\Desktop\streamlit_dashboards\Compressor Requirements\IngeneroLogo.jpeg", width=200)
+    st.image("IngeneroLogo.jpeg", width=200)
 
 
 # Side by Side Display for S1 and S2
-excel_file = pd.ExcelFile(r"C:\Users\Naina Sisodia\Desktop\streamlit_dashboards\Compressor Requirements\GERC_A_PARA_GUI_rev4.xlsm")
+excel_file = pd.ExcelFile("GERC_A_PARA_GUI_rev4.xlsm")
 dict_stg = {'Stage 1': {'tab1': [7, 368, 'table1_df'], 'tab2': [372, 733, 'table2_df'], 'tab3': [745, 1106, 'table3_df'], 'tab4': [1110, 1471,'table4_df']},
             'Stage 2': {'tab1': [7, 368, 'table1_df'], 'tab2': [372, 733, 'table2_df'], 'tab3': [745, 1106, 'table3_df'], 'tab4': [1110, 1471,'table4_df']}
            }
@@ -187,11 +187,11 @@ col1, col2, col3 = st.columns([0.75, 1, 1])
 
 # Data for Stage 1
 with col1:
-    excel_file1 = pd.read_excel(r"C:\Users\Naina Sisodia\Desktop\streamlit_dashboards\Compressor Requirements\GERC_A_PARA_GUI_rev4.xlsm", sheet_name='cur_data')
+    excel_file1 = pd.read_excel("GERC_A_PARA_GUI_rev4.xlsm", sheet_name='cur_data')
 
     @st.cache_data(ttl=60)  # Cache with a timeout of 1 min
     def load_data():
-        return pd.read_excel(r"C:\Users\Naina Sisodia\Desktop\streamlit_dashboards\Compressor Requirements\GERC_A_PARA_GUI_rev4.xlsm", sheet_name='cur_data')
+        return pd.read_excel("GERC_A_PARA_GUI_rev4.xlsm", sheet_name='cur_data')
 
     # Main Streamlit app
     def main():
@@ -277,7 +277,7 @@ with col1:
 
 # Image in the middle
 with col2:
-    st.image(r"C:\Users\Naina Sisodia\Desktop\streamlit_dashboards\Compressor Requirements\Recip crosssection.jpg", caption='Compressor Image')
+    st.image("Recip crosssection.jpg", caption='Compressor Image')
 
 # Data for Stage 1 and Stage 2 dropdown
 with col3:
@@ -290,7 +290,7 @@ with col3:
             "Stage 1": [
                 "Suction Vol. Efficiency",
                 "Discharge Vol. Efficiency",
-                "Indicated Power",
+                "Indicated Powe",
                 "Adiabatic Discharge Temperature",
                 "Discharge Temperature",
                 "Suction Capacity",
@@ -329,7 +329,7 @@ with col3:
             "Stage 2": [
                 "Suction Vol. Efficiency",
                 "Discharge Vol. Efficiency",
-                "Indicated Power",
+                "Indicated Powe",
                 "Adiabatic Discharge Temperature",
                 "Discharge Temperature",
                 "Suction Capacity",
