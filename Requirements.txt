@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 matplotlib==3.8.4
 numpy==1.26.4
 pandas==2.2.2
@@ -5,3 +6,13 @@ Pillow==10.3.0
 plotly==5.20.0
 seaborn==0.13.2
 streamlit==1.33.0
+=======
+streamlit
+numpy
+pandas
+seaborn
+matplotlib
+plotly
+scikit-learn
+openpyxl
+>>>>>>> 4e09303e8a7e629104b0e429ffc6187c0b8bd28b
