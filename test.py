@@ -226,6 +226,7 @@ with col1:
 
         # Convert to DataFrame
         df = pd.DataFrame(table_data)
+        df.index += 1
 
         # Display the table
         st.write("Valve Health Status", fontsize=12, fontweight='bold')
@@ -274,6 +275,7 @@ with col1:
             ]
         }
         df_s1 = pd.DataFrame(data_s1)
+        df_s1.index += 1
         st.dataframe(df_s1, height=150)
 
     # Data for Stage 2
@@ -313,6 +315,7 @@ with col1:
             ]
         }
         df_s2 = pd.DataFrame(data_s2)
+        df_s2.index += 1
         st.dataframe(df_s2, height=200)
 
 # Image in the middle
