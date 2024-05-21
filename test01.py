@@ -210,67 +210,35 @@ with col1:
             return suction_valve_leak_stage1, suction_valve_leak_stage2, disch_valve_leak_stage1, disch_valve_leak_stage2, cylinder_leak_stage1, cylinder_leak_stage2
 
         # Check valve leakage status
-        suction_valve_leak_stage1, suction_valve_leak_stage2, disch_valve_leak_stage1, disch_valve_leak_stage2, cylinder_leak_stage1, cylinder_leak_stage2 = check_valve_leakage(data)
-        
+        (suction_valve_leak_stage1, suction_valve_leak_stage2,
+        disch_valve_leak_stage1, disch_valve_leak_stage2,
+        cylinder_leak_stage1, cylinder_leak_stage2) = check_valve_leakage(data)
+
         # CSS styles
-        red_checkbox_style = """<style>input[type="checkbox"].red {color:red !important;} </style>"""
-        green_checkbox_style = """<style>input[type="checkbox"].green {color:green !important;} </style>"""
+        red_box = '<div style="display: inline-block; width: 20px; height: 20px; background-color: red;"></div>'
+        green_box = '<div style="display: inline-block; width: 20px; height: 20px; background-color: green;"></div>'
 
-        # Display valve leakage status
+        # Function to get colored box
+        def get_colored_box(condition):
+            return red_box if condition else green_box
+
+        # Table data
+        table_data = {
+            "": ["Suction Valve Leak", "Discharge Valve Leak", "Cylinder Leak"],
+            "Stage 1": [get_colored_box(suction_valve_leak_stage1),
+                        get_colored_box(disch_valve_leak_stage1),
+                        get_colored_box(cylinder_leak_stage1)],
+            "Stage 2": [get_colored_box(suction_valve_leak_stage2),
+                        get_colored_box(disch_valve_leak_stage2),
+                        get_colored_box(cylinder_leak_stage2)]
+        }
+
+        # Convert to DataFrame
+        df = pd.DataFrame(table_data)
+
+        # Display the table
         st.write("Valve Health Status", fontsize=12, fontweight='bold')
-        col1, col2 = st.columns([30,1.5])
-        with col1:
-            st.text("suction valve leak - stage 1 :")
-        with col2:
-            if suction_valve_leak_stage1:
-                st.markdown('<div style="display: inline-block; width: 20px; height: 20px; background-color: red;"></div>', unsafe_allow_html=True)
-            else:
-                st.markdown('<div style="display: inline-block; width: 20px; height: 20px; background-color: green;"></div>', unsafe_allow_html=True)
-
-        col1, col2 = st.columns([60, 3])
-
-        with col1:
-            st.text("suction valve leak - stage 2:")
-        with col2:
-            if suction_valve_leak_stage2:
-                st.markdown('<div style="display: inline-block; width: 20px; height: 20px; background-color: red;"></div>', unsafe_allow_html=True)
-            else:
-                st.markdown('<div style="display: inline-block; width: 20px; height: 20px; background-color: green;"></div>', unsafe_allow_html=True)
-
-        col1, col2 = st.columns([90, 4.5])
-
-        with col1:
-            st.text("Discharge valve leak - stage 1:")
-        with col2:
-            if disch_valve_leak_stage1:
-                st.markdown('<div style="display: inline-block; width: 20px; height: 20px; background-color: red;"></div>', unsafe_allow_html=True)
-            else:
-                st.markdown('<div style="display: inline-block; width: 20px; height: 20px; background-color: green;"></div>', unsafe_allow_html=True)
-        col1, col2 = st.columns([120,7])
-        with col1:
-            st.text("Discharge valve leak - stage 2:")
-        with col2:
-            if disch_valve_leak_stage2:
-                st.markdown('<div style="display: inline-block; width: 20px; height: 20px; background-color: red;"></div>', unsafe_allow_html=True)
-            else:
-                st.markdown('<div style="display: inline-block; width: 20px; height: 20px; background-color: green;"></div>', unsafe_allow_html=True)
-        col1, col2 = st.columns([150, 8])
-        with col1:
-            st.text("Cylinder leak - stage 1:")
-        with col2:
-            if cylinder_leak_stage1:
-                st.markdown('<div style="display: inline-block; width: 20px; height: 20px; background-color: red;"></div>', unsafe_allow_html=True)
-            else:
-                st.markdown('<div style="display: inline-block; width: 20px; height: 20px; background-color: green;"></div>', unsafe_allow_html=True)
-
-        col1, col2 = st.columns([180, 9])
-        with col1:
-            st.text("Cylinder leak - stage 2:")
-        with col2:
-            if cylinder_leak_stage2:
-                st.markdown('<div style="display: inline-block; width: 20px; height: 20px; background-color: red;"></div>', unsafe_allow_html=True)
-            else:
-                st.markdown('<div style="display: inline-block; width: 20px; height: 20px; background-color: green;"></div>', unsafe_allow_html=True)
+        st.write(df.to_html(escape=False), unsafe_allow_html=True)
 
     if __name__ == "__main__":
         main()
@@ -659,11 +627,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-
-
-from PIL import Image
-
-# Add buttons with values in front of different parts of the compressor
-st.button(label='Value 1', key='part1')
-st.button(label='Value 2', key='part2')
-st.button(label='Value 3', key='part3')
